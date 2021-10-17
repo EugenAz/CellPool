@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { CellState, useCellPool } from "../../hooks/use-cell-pool";
+import { useCellPool } from "../../hooks/use-cell-pool";
+import { CellState } from "../../utils/cell-pool.utils";
 
 import "./cell-pool.css";
 
