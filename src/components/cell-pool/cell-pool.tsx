@@ -1,3 +1,5 @@
+import "./cell-pool.css";
+
 export const CellPool = () => {
-  return <div></div>;
+  return <div className="pool"></div>;
 };
