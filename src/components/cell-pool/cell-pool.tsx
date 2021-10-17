@@ -1,14 +1,10 @@
 import classNames from "classnames";
+import { CellState, useCellPool } from "../../hooks/use-cell-pool";
 
 import "./cell-pool.css";
 
-enum CellState {
-  ALIVE = 1,
-  DEAD = 0,
-}
-
 export const CellPool = () => {
-  const cellPool: number[][] = [[]];
+  const cellPool = useCellPool();
 
   return (
     <div className="pool">
