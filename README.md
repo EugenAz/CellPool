@@ -1,4 +1,4 @@
-# Run it in dev move
+# Run it in dev mode
 
 ```
 npm run dev
