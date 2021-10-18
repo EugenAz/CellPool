@@ -11,11 +11,15 @@ export const useCellPool = () => {
     const initialCellPool = createRandomlyPopulatedCellPool();
     setCellPool(initialCellPool);
 
-    setInterval(() => {
-      setCellPool((currentCellPool) =>
+    const intervalToken = setInterval(() => {
+      setCellPool((currentCellPool: number[][]) =>
         generateNewCellPoolOnTick(currentCellPool)
       );
     }, 400);
+
+    return () => {
+      clearInterval(intervalToken);
+    };
   }, []);
 
   return cellPool;
