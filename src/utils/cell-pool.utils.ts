@@ -60,14 +60,10 @@ const getNewCellState = (
   amountOfLiveNeighbours: number
 ): CellState => {
   if (cellState === CellState.ALIVE) {
-    if (amountOfLiveNeighbours < 2 || amountOfLiveNeighbours > 3) {
-      return CellState.DEAD;
-    } else {
-      return cellState;
-    }
-  } else if (amountOfLiveNeighbours === 3) {
-    return CellState.ALIVE;
+    return amountOfLiveNeighbours < 2 || amountOfLiveNeighbours > 3
+      ? CellState.DEAD
+      : CellState.ALIVE;
   } else {
-    return cellState;
+    return amountOfLiveNeighbours === 3 ? CellState.ALIVE : CellState.DEAD;
   }
 };
