@@ -37,38 +37,23 @@ const getAmountOfLiveNeighbours = (
   cellPool: number[][],
   i: number,
   j: number
-): number =>
-  countNeighboursInAPreviousRow(cellPool, i, j) +
-  countNeighboursInACurrentRow(cellPool, i, j) +
-  countNeighboursInANextRow(cellPool, i, j);
+): number => {
+  let amount = 0;
+  for (let ii = -1; ii <= 1; ii++) {
+    if (cellPool[i + ii] === undefined) {
+      continue;
+    }
 
-const countNeighboursInAPreviousRow = (
-  cellPool: number[][],
-  i: number,
-  j: number
-) =>
-  cellPool[i - 1]
-    ? (cellPool[i - 1][j - 1] ?? 0) +
-      (cellPool[i - 1][j] ?? 0) +
-      (cellPool[i - 1][j + 1] ?? 0)
-    : 0;
+    for (let jj = -1; jj <= 1; jj++) {
+      if (cellPool[i + ii][j + jj] === undefined || (ii === 0 && jj === 0)) {
+        continue;
+      }
 
-const countNeighboursInACurrentRow = (
-  cellPool: number[][],
-  i: number,
-  j: number
-) => (cellPool[i][j - 1] ?? 0) + (cellPool[i][j + 1] ?? 0);
-
-const countNeighboursInANextRow = (
-  cellPool: number[][],
-  i: number,
-  j: number
-) =>
-  cellPool[i + 1]
-    ? (cellPool[i + 1][j - 1] ?? 0) +
-      (cellPool[i + 1][j] ?? 0) +
-      (cellPool[i + 1][j + 1] ?? 0)
-    : 0;
+      amount += cellPool[i + ii][j + jj];
+    }
+  }
+  return amount;
+};
 
 const getNewCellState = (
   cellState: CellState,
