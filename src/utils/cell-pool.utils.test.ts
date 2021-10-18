@@ -2,23 +2,24 @@ import {
   CellState,
   createRandomlyPopulatedCellPool,
   generateNewCellPoolOnTick,
+  matrixSize,
 } from "./cell-pool.utils";
 
 describe("Cell Pool Utils", () => {
-  it("should create a 50x50 cell pool", () => {
+  it("should create a cell pool", () => {
     const cellPool = createRandomlyPopulatedCellPool();
 
-    expect(cellPool.length).toBe(50);
+    expect(cellPool.length).toBe(matrixSize);
     cellPool.map((row) => {
-      expect(row.length).toBe(50);
+      expect(row.length).toBe(matrixSize);
     });
   });
 
   it("should populate a cell pool", () => {
     const cellPool = createRandomlyPopulatedCellPool();
 
-    const randomI = Math.round(Math.random() * 49);
-    const randomJ = Math.round(Math.random() * 49);
+    const randomI = Math.round(Math.random() * (matrixSize - 1));
+    const randomJ = Math.round(Math.random() * (matrixSize - 1));
 
     expect([CellState.ALIVE, CellState.DEAD]).toContain(
       cellPool[randomI][randomJ]
@@ -83,6 +84,6 @@ describe("Cell Pool Utils", () => {
 });
 
 const getCleanCellPool = () =>
-  Array.from({ length: 50 }, () =>
-    Array.from({ length: 50 }, () => CellState.DEAD)
+  Array.from({ length: matrixSize }, () =>
+    Array.from({ length: matrixSize }, () => CellState.DEAD)
   );

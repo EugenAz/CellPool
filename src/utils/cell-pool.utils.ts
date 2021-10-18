@@ -3,9 +3,11 @@ export enum CellState {
   DEAD = 0,
 }
 
+export const matrixSize = 50;
+
 export const createRandomlyPopulatedCellPool = (): number[][] =>
-  Array.from({ length: 50 }, () =>
-    Array.from({ length: 50 }, () =>
+  Array.from({ length: matrixSize }, () =>
+    Array.from({ length: matrixSize }, () =>
       Math.round(Math.random() * 10) % 2 === 0
         ? CellState.DEAD
         : CellState.ALIVE
@@ -15,10 +17,10 @@ export const createRandomlyPopulatedCellPool = (): number[][] =>
 export const generateNewCellPoolOnTick = (cellPool: number[][]): number[][] => {
   const newCellPool: number[][] = [];
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < cellPool.length; i++) {
     newCellPool[i] = newCellPool[i] ?? [];
 
-    for (let j = 0; j < 50; j++) {
+    for (let j = 0; j < cellPool.length; j++) {
       const amountOfLiveNeighbours = getAmountOfLiveNeighbours(cellPool, i, j);
 
       newCellPool[i][j] = getNewCellState(
