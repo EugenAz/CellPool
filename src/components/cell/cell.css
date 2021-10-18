@@ -1,0 +1,9 @@
+.pool__cell {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.pool__cell--alive {
+  transition: background-color 0.3s ease-in;
+  background-color: black;
+}
